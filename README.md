@@ -1,42 +1,75 @@
 # vampire-workshop
-Resources and files for the advanced vampire workshop. The workshop is targetted at scientists and engineers wishing to study magnetic materials and devices at the atomistic level. The workshop will cover the basic and advanced features of the [VAMPIRE code](https://vampire.york.ac.uk/) which can be used to study a wide range of magnetic materials and phenomena, from zero temperature ground states, equilibrium properties and magnetization dynamics.
+Этот репозиторий является смесью любительского перевода оригинального материала из [этого репозитория](https://github.com/richard-evans/vampire-workshop) и некоторых материалов и комментариев от меня — 101Room. В связи с этим мне нужно сказать, что НЕ являюсь экспертом в области физики и компьютерных наук. Я делюсь своим опытом затем, чтобы у тех, кто столкнулся с теми же сложностями, как и я когда-то, ушло меньше времени и сил на поиск решений, над которыми мне когда-то приходилось биться сутками напролёт. Кто меня умнее и у кого есть желание высказаться и дополнить что-то, оставить обратную связь, исправить ошибку, добавить объективных знаний или что-то ещё, пишите: dart.swan@gmail.com
 
-## Getting started with this repository
-In order to get started with this workshop, you should clone this repository using git.
+Ресурсы и файлы для продвинутого семинара по VAMPIRE. Семинар ориентирован на учёных и инженеров, желающих изучать магнитные материалы и устройства на атомистическом уровне. Семинар включает в себя базовые и продвинутые функции [кода VAMPIRE](https://vampire.york.ac.uk/), с помощью которых можно изучать широкий диапазон магнитных материалов и явлений: от основных состояний при нулевой температуре, до равновесных свойств и динамики намагничивания.
+
+Комментарии и материалы от 101Room ориентированы на тех, кто ранее не использовал VAMPIRE, Linux, Git, и может быть вообще впервые в жизни пытается поставить себе научный пакет. Из-за этого гайд и текст readme вышел для некоторых излишне подробным и раздутым, так что ориентируйтесь на заголовки и пропускайте ненужные разделы. Мои материалы это:
+- каталог `автоматизация рутины` с bash скриптами, которые серией автоматически меняют входной файл и автоматически строят графики
+- каталог `гайд по установке на русском` содержит гайд про установку и запуск (в том числе запуск параллельных вычислений) Vampire на Linux и Windows; некоторые сведения о параллельности для любопытных; гайд по установке Linux, а также решения возникающих в этом процессе проблем;
+
+Если не передумаю, то добавлю каталог `визуализация`, который будет содержать информацию и примеры команд, для построения графиков в gnuplot и для просмотра вашей структуры в научных пакетах Rasmol, Ovito. Если кому-то gnuplot срочно нужен, то в `автоматизация рутины` посмотрите примеры его использования.
+
+## Как начать работу с репозиторием
+Далее приведены команды, полезные для работы, но вовсе на обязательные. Но ещё [ниже](https://github.com/101Room/vampire-workshop-RUS-guide-for-beginners/blob/master/README.md#если-вы-вообще-не-знаете-что-такое-git-и-не-желаете-себе-морочить-голову-этой-чухнёй) будет описан способ работы с файлами в обход Git, если вам так угодно.
+
+Чтобы начать работу с этими ресурсами и файлами, вам следует клонировать **оригинальный репозиторий** с помощью git:
 
 `git clone https://github.com/richard-evans/vampire-workshop.git`
 
-Git can be accessed through your terminal.
+Либо клонировать **этот мой репозиторий**, если хотите получить подробную инструкцию на русском по установке VAMPIRE, Linux и некоторые другие файлы от 101Room:
 
-If you ever want to get the most up to date set of files, after you've cloned the repository, you can
-`git fetch`.
+`git clone https://github.com/101Room/vampire-workshop-RUS-guide-for-beginners`
 
-This checks the origin repository (the version hosted here) for any changes compared to your local copy. You can then merge these copies into your repository with 
-`git merge origin/master`. 
+Вы можете использовать Git через терминал, если вы его себе ставили.
 
-You should be sure to be checked out to the local branch you want to merge into, see below. 
+Если вы когда-то ещё захотите получить самый последний набор файлов, то можете после клонирования (и находясь в папке репозитория) использовать для этого команду
+`git fetch`. Она забирает новые данные, и отправляет их вам, но при этом не затрагивает то, что вы сейчас ковыряете-меняете в файлах.
 
-This will overwrite local changes so it's best to checkout your own branch of this repository on your local machine, if you want to make substantial changes.
+А вот команда, которая уже объединит новое с тем, что вы ковыряете
+`git merge origin/master`.
 
-The `git fetch` and `git merge` can be replaced with a `git pull`, but this will automatically merge without asking about conflicts, so make sure that your changes are committed to a separate branch if you don't want them to be affected.  
+Вы должны быть уверены и проверить свою локальную (которая на вашем компьютере) ветку, перед тем как делать объединение (merge). После этой команды локальные изменения перезапишутся.
 
-## Making your own changes
-In order to checkout your own branch, so that you can keep your own changes to a version of the repository, you can use
-`git checkout -b branch_name`. This will create a new branch called "branch\_name" and checkout to it. In future you can just run 
-`git checkout branch_name` to change branches.
-The master branch will be the version of this repository that you should use as your base. 
+`git fetch` + `git merge origin/master` = `git pull`. Так что если хотите получить сразу всё из интернета себе и объединить изменения, то используйте `git pull`. Имейте ввиду, что слияние будет автоматическим, и о возникших конфликтах вас никто спрашивать не будет. Если вам нужны ваши изменения, то зафиксируйте их себе в отдельную ветку-песочницу и творите там свои непотребства дальше.
 
-When you make changes to files you can add and commit them to your branch by using `git add -A` followed by `git commit`. The -A adds all changes, but individual files/folders can be specified instead. `git commit` will open your default text editor, and let you add a commit message, save and exit this when you are done, and the changes will be added to your git repository. 
+### Если вы плаваете в этих командах или из этих объяснений ничего не понятно
 
-If you would like to run simulations, but don't want to keep your output files, and don't want to keep being reminded to add them by git, you can use the `working` directory. None of the files you add to this directory should be included by git, and they shouldn't be affected by new pulling down the newest version of the repository. This may change in future however.
+[Тут](https://webhamster.ru/mytetrashare/index/mtb0/143575842521lohpnj4q) более подробно можно узнать / вспомнить о fetch, merge, pull и их различиях.
 
-## File locations
-input-files/ and pdf-slides/ contain sections separated by day.
+### Если вы вообще не знаете, что такое Git и хотите разобраться
 
-input-files/ contains basic input files for demonstrating vampire, as well as occassional brief walkthroughs. pdf-slides/ contains the presented slides from the workshop.
+Это будет полезно, если вы хотите в будущем заниматься программированием (есть волшебная призма голода, которая превращает физиков в говнокодеров, так что...), участвовать в open source разработке или просто писать всякую всячину как я сейчас, либо использовать возможности бесплатного хостинга для *статических страниц* [Github Pages](https://pages.github.com/). Я сама училась пару часиков по 13 видео из [плейлиста ADV-IT](https://www.youtube.com/playlist?list=PLg5SS_4L6LYstwxTEOU05E0URTHnbtA0l), но вообще видео про то как использовать Git миллион. Кому пара часиков много и хочется за 7 минут, то вот есть [такой ёмкий туториал](https://tproger.ru/translations/git-quick-start/) по основным командам.
 
-## Getting VAMPIRE
-VAMPIRE is required to run the simulations in this workshop and is available at the [website](https://vampire.york.ac.uk/) with the source code hosted on [GitHub](https://github.com/richard-evans/vampire).
+### Если вы вообще не знаете, что такое Git и не желаете себе морочить голову этой чухнёй
 
-## License
-The license is available in the LICENSE file. 
+Вам надо забить на Git и просто нажать на зелёную кнопочку со стрелочкой скачивания в верхнем правом углу `Code`, а потом `Download ZIP`. Так вы скачаете **мой репозиторий** архивом, в котором есть некоторые дополнения от меня. Если они вам не нужны и вы хотите оригинал на английском, то вам надо перейти [в оригинальный репозиторий](https://github.com/richard-evans/vampire-workshop) и скачать уже там.
+
+## Внесение ваших изменений
+Если вы хотите сохранить свои изменения в отдельной ветке, то используйте для создания ветки такую команду
+`git checkout -b branch_name`. Так вы создадите ветку с именем "branch\_name" и перейдёте на неё. Потом вы сможете использовать команду
+`git checkout branch_name` для переключения между ветками.
+Основная ветвь будет версией того репозитория, который вы выберете (мой или оригинальный), она должна быть использована в качестве основы.
+
+Когда вы делаете изменения в файлах, то вы можете данный факт зафиксировать в своей ветке с помощью `git add -A` и последующей командой `git commit`. -A добавляет все изменения, но вы можете сделать иначе и указать отдельные файлы и папки после команды вместо -A. `git commit` откроет ваш текстовой редактор по умолчанию и позволит вам добавить комментарий к тому злу, что вы натворили. Сохраняете, выходите из редактора, после этого изменения будут добавлены в ваш репозиторий Git. Можно использовать команду `git commit -m "Text of message"` чтобы сразу оставить комментарий.
+
+Если вы хотите запускать моделирование, но не хотите сохранять выходные файлы и не хотите, чтобы вам постоянно напоминали о добавлении их с помощью Git, то вы можете делать всё это в папке `working`. С помощью файла `.gitignore` сделано так (этот каталог там указан), что этот каталог игнорируется. Изначально планировалось именно так, что он не будет включаться в Git, но как отметил господин Эванс: "Это может измениться в будущем". Поэтому проверьте что там в оригинальном репозитории, если думаете работать с ним, а не с моим, и хотите использовать функцию `.gitignore`.
+
+## Расположение файлов
+input-files/ and pdf-slides/ содержат разделы, разделённые по дням семинара.
+
+input-files/ содержат основные входные файлы для демонстрации VAMPIRE, также там есть краткие пошаговые инструкции. pdf-slides/ содержат представленные слайды с семинара.
+
+## Получить VAMPIRE
+VAMPIRE нужен для запуска моделирования и доступен на [официальном сайте](https://vampire.york.ac.uk/), исходный код размещён на [GitHub](https://github.com/richard-evans/vampire).
+
+## Видео про VAMPIRE от его разработчиков, записи семинара 2020 (ENG)
+[VAMPIRE на YouTube](https://www.youtube.com/channel/UCP3g2DGxVB5MKeAvD1soKOg). В [этом видео](https://www.youtube.com/watch?v=Q6D21Dp0iCY) Эванс показывает конкретно как через Git клонировать себе программный пакет (не этот репозиторий для семинара, а сам пакет), скомпилировать его для параллельного запуска и запустить. Эти же команды и пояснения к ни можно будет найти в гайде, речь о котором пойдёт ниже. А вообще офигеть вам повезло, завидую, мне в 2019 без видосов было очень весело разбираться с этим всем.
+
+## Как установить VAMPIRE
+Его надо ставить либо на Linux (настоящий или через виртуальную машину), либо запускать во встроенном bash, который есть в Windows 10. Оба способа я подробно описываю в этом репозитории. Ищите мои гайды в каталоге `гайд по установке на русском` файлы `установка VAMPIRE.pdf` и `установка Linux.pdf` (читать лучше в таком порядке). Можете поделиться одним с друзьями, которые не знают как поставить Linux или боятся начать разбираться как ставить, так как в гайде есть даже решения проблем с установкой и переходом на Linux.
+
+## Рассылка в Google groups для пользователей Vampire
+Если не хотите пропустить следующий семинар, то есть смысл подписаться на [рассылку](groups.google.com/forum/#!forum/vampire-users).
+
+## Лицензия
+Смотрите файл license (вкратце файл говорит о том, что это лицензия GNU General Public License, что на русском значит "халява" — прим. пер.).
